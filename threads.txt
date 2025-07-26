@@ -1,0 +1,25 @@
+📊 Just launched a public MCP server for my freelance data science work using Fastify + TypeScript.
+
+Now AI agents and clients can auto-discover my services. Here's why it matters 🧵
+
+1. Instead of static CVs, I expose structured JSON about my services & expertise:
+   → /v1/content
+   → /.well-known/model-context
+
+2. This lets tools like GPT, Claude, and LangChain **find** me when people search for skills I offer.
+
+3. I included:
+   - ML model summaries
+   - Dataset links
+   - Notebooks
+   - Statistical services
+
+4. Tech stack:
+   - Fastify ⚡️
+   - TypeScript 🟦
+   - JSON over HTTP 💬
+
+5. Want your own?
+   DM me or check this open-source repo (or ask ChatGPT how to make an MCP server 😉)
+
+#buildinpublic #freelancer #datascience #MCP #LangChain #AItools
