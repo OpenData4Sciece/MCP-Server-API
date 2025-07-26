@@ -1,58 +1,53 @@
-# MCP Server – Machine-Consumable Protocol Compliant API for ML Services
+# MCP Server: A Metadata Content Provider API for Machine Learning Apps
 
-**MCP Server** is a Fastify-based TypeScript API that follows the [Machine-Consumable Protocol (MCP)](https://machineconsumable.org/) standard. It provides structured discovery and service definition endpoints to help clients (AI/ML tools, agents, LLMs, or apps) understand and interact with your ML APIs in a fully structured and machine-readable way.
+MCP Server is a structured, standards-compliant API for serving metadata, service discovery endpoints, and machine learning content. It's designed to help AI and data science applications discover model context, training artefacts, research notebooks, and statistical methods efficiently.
 
-At the moment, it includes the following MCP endpoints ⚙️
+This server is based on the [MCP specification](https://www.modelcontext.org/spec) and is production-ready with clean TypeScript code and modular design.
 
-- **`/.well-known/model-context`** – JSON-LD context for schema discovery.
-- **`/v1/discover`** – Programmatic introspection and metadata for ML services.
-- **`/v1/content`** – Declares the ML services provided by your API.
 
-It’s built cleanly and efficiently using Fastify and TypeScript for reliability, speed, and full developer happiness 😎
+## Features 🚀
+
+- `.well-known/model-context` for model-level context resolution
+- Service discovery endpoint at `/v1/discovery`
+- `/v1/content` endpoint to list data science and ML resources
+- Clean Fastify setup, with plugin structure and async loading
+- Environment variable support via `.env`
 
 
 ## Get Started
 
-1. `npm install` – install the dependencies.
-2. `npm run dev` – start the server in development mode (with automatic restarts using `tsnd`).
-3. Rename `.env.dist` to `.env` and configure your environment if needed.
+1. `npm install` to install all the dependencies.
+2. `npm run dev` to launch the server with auto-reload (via `nodemon`).
+3. Copy `.env.dist` to `.env` and configure the variables for your environment.
 
 
 ### Other Commands
 
-- `npm run start` – start the server in standard mode without file watching.
-- `npm run prod` – production-ready execution (runs `build` then `node`).
-- `npm run build` – compile the TypeScript files into JavaScript.
+- `npm run start` - start the server in standard mode (without auto-reload).
+- `npm run prod` - optimised production run. This compiles the TS files then runs the server.
+- `npm run build` - compile the TypeScript source code into JavaScript.
 
 
 ### Utility
 
-- `npm run prettier:check` – check formatting issues in codebase.
-- `npm run prettier:fix` – automatically fix code formatting issues.
+- `npm run prettier:check` – check formatting issues using Prettier.
+- `npm run prettier:fix` – fix formatting issues automatically.
 
 
 ## Author
 
 [![Pierre-Henry Soria](https://avatars0.githubusercontent.com/u/1325411?s=200)](https://ph7.me "Pierre-Henry Soria, Software Developer")
 
-Made with ❤️ by **[Pierre-Henry Soria](https://pierrehenry.be)** – Senior Software Engineer, passionate about machine learning, elegant code, solving complex problems, and living the sweet life with cheese 🧀, ristretto ☕️, and dark chocolate 🍫.
+Made with ❤️ by **[Pierre-Henry Soria](https://pierrehenry.be)**. A super passionate & enthusiastic Problem-Solver / Senior Software Engineer. Also a true cheese 🧀, ristretto ☕️, and dark chocolate lover! 😋
 
-[![@phenrysay](https://img.shields.io/badge/x-000000?style=for-the-badge&logo=x)](https://x.com/phenrysay "Follow Me on X")  
-[![pH-7](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pH-7 "My GitHub")  
-[![YouTube Video](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@pH7Programming "YouTube SucceedAI Video")  
-[![Bluesky](https://img.shields.io/badge/Bluesky-0061FF?style=for-the-badge&logoColor=white)](https://bsky.app/profile/ph7s.bsky.social "Follow me on Bluesky")
+[![@phenrysay](https://img.shields.io/badge/x-000000?style=for-the-badge&logo=x)](https://x.com/phenrysay "Follow Me on X")  [![pH-7](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pH-7 "My GitHub")  [![YouTube Video](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@pH7Programming "YouTube SucceedAI Video")  [![Bluesky](https://img.shields.io/badge/bluesky-1e90ff?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0cHgiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjI0cHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTMwIDZsLTIuOTk5LTEuNjY2TDMyIDMuMzQgMjMuMTg5IDAgMTYuMDA2IDUuMzQgOC44MTMgMCAwIDMuMzQgNC45OTkgNC4zMzQgMCA2bDUuMDAxIDQuODAzTDQgMjAuODFWMjRsNS4wMDEtMS42NjZMMTYgMjhMMjIuOTk5IDIyLjM0IDMyIDI0di0zLjE4OUwyNy4wMDIgMTIgMzAgNiIgLz48L3N2Zz4=)](https://bsky.app/profile/ph7s.bsky.social "Bluesky Profile")
 
 
-# About the Project
+## About the Project
 
-**MCP Server** is part of the initiative **#AI-Free-Projects**, a public commitment to building and sharing open, practical AI/data infra for developers and ML builders.  
-
-It supports the emerging **MCP standard** and helps bridge the gap between model consumers and API infrastructure.
-
-Feel free to connect or reach out on **[LinkedIn](https://www.linkedin.com/in/ph7enry/)** 🚀
+**MCP Server** is part of the `#AI-Free-Projects` challenge – a collection of **7 open source AI projects** shared publicly on GitHub and YouTube. The goal is to contribute back to the community while practising 20-hour/week transparency commitment.
 
 
 ## License
 
-Distributed under the [MIT](https://opensource.org/license/mit) license.  
-Happy hacking and ML building! 🤠
+Distributed under the [MIT License](LICENSE) 🎉 Happy hacking! 🤠
