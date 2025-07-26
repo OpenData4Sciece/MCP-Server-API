@@ -1,4 +1,4 @@
-# MCP Server: A Metadata Content Provider API for Machine Learning Apps
+# MCP Server – Machine-Consumable Protocol Compliant API for ML Services
 
 MCP Server is a structured, standards-compliant API for serving metadata, service discovery endpoints, and machine learning content. It's designed to help AI and data science applications discover model context, training artefacts, research notebooks, and statistical methods efficiently.
 
@@ -34,7 +34,32 @@ This server is based on the [MCP specification](https://www.modelcontext.org/spe
 - `npm run prettier:fix` – fix formatting issues automatically.
 
 
-## Author
+## Follow My MCP Journey
+
+I regularly share updates, deep dives, and tutorials on **building MCP servers** and related AI infrastructure on social media:
+
+- Bluesky: [https://bsky.app/profile/ph7s.bsky.social](https://bsky.app/profile/ph7s.bsky.social)  
+- X (Twitter): [https://x.com/phenrysay](https://x.com/phenrysay)
+
+Feel free to follow along, ask questions, and engage!
+
+
+## What is an MCP Server?
+
+A **Model Context Protocol (MCP) server** is not just a typical REST API. Instead of primarily exchanging data or performing CRUD operations, an MCP server serves **machine-readable metadata and context descriptions** about your machine learning services or AI models.
+
+Its main goal is to provide **structured discovery endpoints**—usually under the `.well-known` path—that allow AI agents, language models, and tooling to **understand what services you offer, how to interact with them, and their semantic context** without human interpretation.
+
+
+## How is MCP different from a normal API?
+
+- **Purpose:** Traditional APIs serve application data and actions; MCP servers serve metadata about your models/services.
+- **Endpoints:** MCP heavily uses `.well-known/model-context` for discovery, making it easily discoverable and standardised.
+- **Format:** MCP responses use semantic formats like JSON-LD to encode context and relationships, rather than just raw JSON data.
+- **Consumers:** Instead of front-end apps or users, MCP endpoints target **AI agents, federated services, or tooling ecosystems**.
+
+
+## The Baker
 
 [![Pierre-Henry Soria](https://avatars0.githubusercontent.com/u/1325411?s=200)](https://ph7.me "Pierre-Henry Soria, Software Developer")
 
