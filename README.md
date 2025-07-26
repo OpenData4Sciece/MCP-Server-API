@@ -50,4 +50,4 @@ Made with ❤️ by **[Pierre-Henry Soria](https://pierrehenry.be)**. A super pa
 
 ## License
 
-Distributed under the [MIT License](LICENSE) 🎉 Happy hacking! 🤠
+Distributed under the [MIT License](LICENSE.md) 🎉 Happy hacking! 🤠
