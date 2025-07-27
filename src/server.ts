@@ -1,13 +1,18 @@
 import Fastify from 'fastify';
+import dotenv from 'dotenv';
 import { registerContextRoutes } from './routes/contextRoutes';
 
+// Load environment variables
+dotenv.config();
+
+const PORT = Number(process.env.PORT) || 3000;
 const server = Fastify({ logger: true });
 
-// Register custom context routes for discovery
+// Register context routes
 registerContextRoutes(server);
 
-// Start the server
-server.listen({ port: 3000 }, (err, address) => {
+// Start server
+server.listen({ port: PORT }, (err, address) => {
   if (err) {
     server.log.error(err);
     process.exit(1);
