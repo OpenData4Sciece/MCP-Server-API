@@ -1,4 +1,4 @@
-# MIT License - ToucanDB
+# MIT License - MCP Server API
 
 **Copyright (c) 2025 [Pierre-Henry Soria](https://ph7.me)**
 
