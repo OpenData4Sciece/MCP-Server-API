@@ -9,6 +9,7 @@ dotenv.config();
 
 const PORT = Number(process.env.PORT) || 3000;
 const server = Fastify({ logger: true });
+const appVersion = process.env.APP_VERSION || '0.1.0';
 
 // Register context routes
 registerContextRoutes(server);
@@ -24,5 +25,5 @@ server.listen({ port: PORT }, (err, address) => {
     server.log.error(err);
     process.exit(1);
   }
-  console.log(`🚀 MCP Server ready at ${address}`);
+  console.log(`🚀 MCP Server (v${appVersion}) ready at ${address}`);
 });

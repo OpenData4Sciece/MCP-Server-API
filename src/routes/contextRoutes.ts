@@ -5,6 +5,7 @@ const description = process.env.MCP_DESCRIPTION || "MCP Server providing model c
 const tags = (process.env.MCP_TAGS || "MCP").split(',');
 const email = process.env.MCP_CONTACT_EMAIL || "hi@ph7.me";
 const website = process.env.MCP_CONTACT_WEBSITE || "https://ph7.me";
+const version = process.env.APP_VERSION || '0.1.0';
 
 export async function registerContextRoutes(server: FastifyInstance) {
   // MCP Discovery Endpoint
@@ -13,6 +14,7 @@ export async function registerContextRoutes(server: FastifyInstance) {
       "@context": "https://modelcontext.org/contexts/v1.json",
       "name": name,
       "description": description,
+      "version": version,
       "tags": tags,
       "contact": {
         "email": email,
