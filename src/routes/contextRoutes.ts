@@ -1,22 +1,28 @@
 import { FastifyInstance } from 'fastify';
 
-// Context metadata structure for ML/Data Science services
+const name = process.env.MCP_NAME || "MCP Service";
+const description = process.env.MCP_DESCRIPTION || "MCP Server providing model context.";
+const tags = (process.env.MCP_TAGS || "MCP").split(',');
+const email = process.env.MCP_CONTACT_EMAIL || "hi@ph7.me";
+const website = process.env.MCP_CONTACT_WEBSITE || "https://ph7.me";
+
 export async function registerContextRoutes(server: FastifyInstance) {
-  // Well-known endpoint for MCP discovery
+  // MCP Discovery Endpoint
   server.get('/.well-known/model-context', async () => {
     return {
       "@context": "https://modelcontext.org/contexts/v1.json",
-      "name": "Data Science Services by Pierre",
-      "description": "Freelance data scientist providing machine learning models, statistical analysis, and data-driven consulting.",
-      "tags": ["data science", "machine learning", "statistics", "freelance", "MCP"],
+      "name": name,
+      "description": description,
+      "tags": tags,
       "contact": {
-        "email": "hi@ph7.me",
-        "website": "https://ph7.me"
-      }
+        "email": email,
+        "website": website
+      },
+      "content_endpoint": "/v1/content"
     };
   });
 
-  // Sample content endpoint listing available ML solutions
+  // Available Models Content
   server.get('/v1/content', async () => {
     return [
       {

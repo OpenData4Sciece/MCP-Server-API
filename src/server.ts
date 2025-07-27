@@ -1,6 +1,8 @@
 import Fastify from 'fastify';
 import dotenv from 'dotenv';
 import { registerContextRoutes } from './routes/contextRoutes';
+import fastifyStatic from '@fastify/static';
+import path from 'path';
 
 // Load environment variables
 dotenv.config();
@@ -10,6 +12,11 @@ const server = Fastify({ logger: true });
 
 // Register context routes
 registerContextRoutes(server);
+
+server.register(fastifyStatic, {
+  root: path.join(__dirname, '../public'),
+  prefix: '/', // optional: serve from root
+});
 
 // Start server
 server.listen({ port: PORT }, (err, address) => {
