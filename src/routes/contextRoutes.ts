@@ -11,7 +11,7 @@ export async function registerContextRoutes(server: FastifyInstance) {
   // MCP Discovery Endpoint
   server.get('/.well-known/model-context', async () => {
     return {
-      "@context": "https://modelcontext.org/contexts/v1.json",
+      "@context": "/.well-known/v1.json", // Local context reference
       "name": name,
       "description": description,
       "version": version,

@@ -8,7 +8,7 @@ This server is based on the [MCP specification](https://www.modelcontext.org/spe
 ## Features 🚀
 
 - `.well-known/model-context` for model-level context resolution
-- `.well-known/v1.json` for public schema definitions using JSON-LD
+- `.well-known/v1.json` for public schema definitions using JSON-LD, to define your @context vocab.
 - Service discovery endpoint at `/v1/discovery`
 - `/v1/content` endpoint to list data science and ML resources
 - Clean Fastify setup, with plugin structure and async loading
