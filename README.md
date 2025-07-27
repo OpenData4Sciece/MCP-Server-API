@@ -8,10 +8,11 @@ This server is based on the [MCP specification](https://www.modelcontext.org/spe
 ## Features 🚀
 
 - `.well-known/model-context` for model-level context resolution
+- `.well-known/v1.json` for public schema definitions using JSON-LD
 - Service discovery endpoint at `/v1/discovery`
 - `/v1/content` endpoint to list data science and ML resources
 - Clean Fastify setup, with plugin structure and async loading
-- Environment variable support via `.env`
+- Environment variable support via `.env` (including MCP versioning)
 
 
 ## Get Started
@@ -32,6 +33,22 @@ This server is based on the [MCP specification](https://www.modelcontext.org/spe
 
 - `npm run prettier:check` – check formatting issues using Prettier.
 - `npm run prettier:fix` – fix formatting issues automatically.
+
+
+## Environment Variables
+
+The `.env` file supports the following:
+
+```env
+PORT=3000
+APP_VERSION=1.0.0
+MCP_VERSION=1.0.0
+MCP_NAME="Data Science Services by Pierre"
+MCP_DESCRIPTION="Freelance data scientist providing machine learning models, statistical analysis, and data-driven consulting."
+MCP_TAGS="data science,machine learning,statistics,freelance,MCP"
+MCP_CONTACT_EMAIL=hi@ph7.me
+MCP_CONTACT_WEBSITE=https://ph7.me
+```
 
 
 ## Follow My MCP Journey
