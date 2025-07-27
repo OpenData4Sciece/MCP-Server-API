@@ -10,8 +10,8 @@ export async function registerContextRoutes(server: FastifyInstance) {
       "description": "Freelance data scientist providing machine learning models, statistical analysis, and data-driven consulting.",
       "tags": ["data science", "machine learning", "statistics", "freelance", "MCP"],
       "contact": {
-        "email": "contact@example.com",
-        "website": "https://your-portfolio.com"
+        "email": "hi@ph7.me",
+        "website": "https://ph7.me"
       }
     };
   });

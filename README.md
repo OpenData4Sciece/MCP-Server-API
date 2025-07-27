@@ -1,4 +1,4 @@
-# MCP Server – Machine-Consumable Protocol Compliant API for ML Services
+# My Personal Machine-Consumable Protocol (MCP) Compliant API for ML Services
 
 MCP Server is a structured, standards-compliant API for serving metadata, service discovery endpoints, and machine learning content. It's designed to help AI and data science applications discover model context, training artefacts, research notebooks, and statistical methods efficiently.
 
