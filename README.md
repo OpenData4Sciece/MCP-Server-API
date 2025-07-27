@@ -56,7 +56,7 @@ MCP_CONTACT_WEBSITE=https://ph7.me
 I regularly share updates, deep dives, and tutorials on **building MCP servers** and related AI infrastructure on social media:
 
 - Bluesky: [https://bsky.app/profile/ph7s.bsky.social](https://bsky.app/profile/ph7s.bsky.social)  
-- X (Twitter): [https://x.com/phenrysay](https://x.com/phenrysay)
+- X: [https://x.com/phenrysay](https://x.com/phenrysay)
 
 Feel free to follow along, ask questions, and engage!
 
