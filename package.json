@@ -4,9 +4,12 @@
   "description": "Model Context Provider (MCP) server for data science services",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "ts-node-dev --respawn src/index.ts",
+    "dev": "ts-node-dev --respawn src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "npm run build && node dist/server.js",
+    "prod": "npm run build && node dist/server.js",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   },
   "author": {
     "name": "Pierre-Henry Soria",
@@ -34,6 +37,7 @@
   "devDependencies": {
     "@types/node": "^20.5.1",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "prettier": "^3.0.0"
   }
 }
