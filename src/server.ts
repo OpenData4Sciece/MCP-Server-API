@@ -9,7 +9,7 @@ dotenv.config();
 
 const PORT = Number(process.env.PORT) || 3000;
 const server = Fastify({ logger: true });
-const appVersion = process.env.APP_VERSION || '0.1.0';
+const appVersion = process.env.APP_VERSION || '1.0.0';
 
 // Register context routes
 registerContextRoutes(server);
