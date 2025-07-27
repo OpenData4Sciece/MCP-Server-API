@@ -1,0 +1,9 @@
+{
+  "@context": {
+    "name": "https://schema.org/name",
+    "description": "https://schema.org/description",
+    "version": "https://schema.org/version",
+    "content_endpoint": "https://schema.org/url",
+    "metadata": "https://schema.org/additionalProperty"
+  }
+}
