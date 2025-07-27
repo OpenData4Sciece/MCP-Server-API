@@ -3,6 +3,11 @@
     "name": "https://schema.org/name",
     "description": "https://schema.org/description",
     "version": "https://schema.org/version",
+    "tags": "https://schema.org/keywords",
+    "contact": {
+      "email": "https://schema.org/email",
+      "website": "https://schema.org/url",
+    },
     "content_endpoint": "https://schema.org/url",
     "metadata": "https://schema.org/additionalProperty"
   }
