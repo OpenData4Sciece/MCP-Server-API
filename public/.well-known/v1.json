@@ -6,7 +6,7 @@
     "tags": "https://schema.org/keywords",
     "contact": {
       "email": "https://schema.org/email",
-      "website": "https://schema.org/url",
+      "website": "https://schema.org/url"
     },
     "content_endpoint": "https://schema.org/url",
     "metadata": "https://schema.org/additionalProperty"
