@@ -1,22 +1,22 @@
-import Fastify from 'fastify';
-import dotenv from 'dotenv';
-import { registerContextRoutes } from './routes/contextRoutes';
-import fastifyStatic from '@fastify/static';
-import path from 'path';
+import Fastify from "fastify";
+import dotenv from "dotenv";
+import { registerContextRoutes } from "./routes/contextRoutes";
+import fastifyStatic from "@fastify/static";
+import path from "path";
 
 // Load environment variables
 dotenv.config();
 
-const PORT = Number(process.env.PORT) || 3000;
+const PORT = Number(process.env.APP_PORT) || 3000;
 const server = Fastify({ logger: true });
-const appVersion = process.env.APP_VERSION || '1.0.0';
+const appVersion = process.env.APP_VERSION || "1.0.0";
 
 // Register context routes
 registerContextRoutes(server);
 
 server.register(fastifyStatic, {
-  root: path.join(__dirname, '../public'),
-  prefix: '/', // optional: serve from root
+  root: path.join(__dirname, "../public"),
+  prefix: "/", // optional: serve from root
 });
 
 // Start server
