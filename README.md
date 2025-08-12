@@ -36,7 +36,7 @@ This server follows the [MCP specification](https://www.modelcontext.org/spec) a
 The `.env` file supports the following values:
 
 ```env
-PORT=3000
+APP_PORT=3000
 APP_VERSION=1.0.0
 MCP_VERSION=1.0.0
 MCP_NAME="Data Science Services by Pierre"
