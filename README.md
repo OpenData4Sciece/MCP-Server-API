@@ -1,7 +1,3 @@
-Here’s your updated section with clarified wording for `.well-known/v1.json`, improved structure, and expanded explanation, while preserving your style and British English:
-
----
-
 # My Personal Machine-Consumable Protocol (MCP) Compliant API for ML Services
 
 MCP Server is a structured, standards-compliant API for serving metadata, service discovery endpoints, and machine learning content. It's designed to help AI and data science applications discover model context, training artefacts, research notebooks, and statistical methods efficiently.
@@ -16,6 +12,7 @@ This server follows the [MCP specification](https://www.modelcontext.org/spec) a
 * `/v1/content` endpoint to list available ML resources and data science artefacts
 * Clean Fastify setup using plugin architecture and async route loading
 * `.env` support for flexible configuration, including versioning and metadata
+
 
 ## Get Started
 
@@ -70,6 +67,9 @@ Its core purpose is to expose structured discovery endpoints—typically under `
 * **Endpoints:** MCP uses `.well-known/model-context` and `v1.json` for semantic discovery.
 * **Format:** All responses are structured as JSON-LD (not plain JSON), enabling interoperability and reuse across systems.
 * **Consumers:** Designed for machines, not people—MCP endpoints target **AI agents, search engines, or distributed tools**.
+
+![Pierre-Henry Soria, author of the MCP Server project](assets/images/machine-consumable-protocol-mcp-compliant-api-for-ml-services.png)
+
 
 ## The Baker
 
