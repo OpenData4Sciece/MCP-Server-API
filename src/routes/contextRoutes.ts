@@ -2,13 +2,16 @@ import { FastifyInstance } from "fastify";
 import cors from "@fastify/cors";
 import axios from "axios";
 
-const name = process.env.MCP_NAME || "MCP Service";
-const description =
-  process.env.MCP_DESCRIPTION || "MCP Server providing model context.";
-const tags = (process.env.MCP_TAGS || "MCP").split(",");
-const email = process.env.MCP_CONTACT_EMAIL || "hi@ph7.me";
-const website = process.env.MCP_CONTACT_WEBSITE || "https://ph7.me";
-const version = process.env.APP_VERSION || "0.1.0";
+const mcpMetadata = {
+  name: process.env.MCP_NAME || "MCP Service",
+  description: process.env.MCP_DESCRIPTION || "MCP Server providing model context.",
+  tags: (process.env.MCP_TAGS || "MCP").split(","),
+  contact: {
+    email: process.env.MCP_CONTACT_EMAIL || "hi@ph7.me",
+    website: process.env.MCP_CONTACT_WEBSITE || "https://ph7.me",
+  },
+  version: process.env.APP_VERSION || "0.1.0",
+};
 
 export async function registerContextRoutes(server: FastifyInstance) {
   await server.register(cors, { origin: true });
@@ -21,23 +24,44 @@ export async function registerContextRoutes(server: FastifyInstance) {
     console.error(`[${new Date().toISOString()}] ERROR: ${error.message}`);
   });
 
-  // MCP Discovery Endpoint
+  /**
+   * MCP Discovery Endpoint
+   * Returns metadata about the MCP server including name, description, version, tags, contact, and content endpoint.
+   * The @context points to the public .well-known/v1.json JSON-LD context served by this server.
+   */
   server.get("/.well-known/model-context", async () => {
     return {
-      "@context": "/.well-known/v1.json", // Local context reference
-      name: name,
-      description: description,
-      version: version,
-      tags, // ES6 shorthand property name
-      contact: {
-        email: email,
-        website: website,
-      },
+      "@context": "/.well-known/v1.json", // Public JSON-LD context reference served by this server
+      name: mcpMetadata.name,
+      description: mcpMetadata.description,
+      version: mcpMetadata.version,
+      tags: mcpMetadata.tags,
+      contact: mcpMetadata.contact,
       content_endpoint: "/v1/content",
     };
   });
 
-  // Available Models Content
+  /**
+   * JSON-LD Context Endpoint
+   * Serves the JSON-LD context document defining terms used in the MCP metadata,
+   * mapping them to schema.org and other vocabularies.
+   */
+  server.get("/.well-known/v1.json", async () => {
+    return {
+      "@context": {
+        name: "https://schema.org/name",
+        description: "https://schema.org/description",
+        version: "https://schema.org/version",
+        content_endpoint: "https://schema.org/url",
+        metadata: "https://schema.org/CreativeWork",
+      },
+    };
+  });
+
+  /**
+   * Available Models Content Endpoint
+   * Returns a list of available model contents with titles, descriptions, and tags.
+   */
   server.get("/v1/content", async () => {
     return [
       {
@@ -67,7 +91,10 @@ export async function registerContextRoutes(server: FastifyInstance) {
     ];
   });
 
-  // Model Metadata Endpoint
+  /**
+   * Model Metadata Endpoint
+   * Returns metadata for a specific model identified by modelId.
+   */
   server.get("/v1/model/:modelId", async (request) => {
     const { modelId } = request.params as { modelId: string };
     if (modelId === "churn") {
@@ -92,7 +119,10 @@ export async function registerContextRoutes(server: FastifyInstance) {
     return { error: "Model not found" };
   });
 
-  // Strava Activities Integration Endpoint
+  /**
+   * Strava Activities Integration Endpoint
+   * Fetches Strava athlete activities using provided access token and optional pagination parameters.
+   */
   server.post("/v1/strava/activities", async (request, reply) => {
     const { accessToken, endpoint = "https://www.strava.com/api/v3/athlete/activities", page = 1, per_page = 30 } = request.body as any;
     try {
