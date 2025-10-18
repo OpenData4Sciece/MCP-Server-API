@@ -4,7 +4,7 @@ MCP Server is a structured, standards-compliant API for serving metadata, servic
 
 This server follows the [MCP specification](https://www.modelcontext.org/spec) and is production-ready, built with clean TypeScript code and a modular design.
 
-[![How to Use MCP Servers (Full Workflow)](https://i1.ytimg.com/vi/DEaSz8kVPH8/sddefault.jpg)](https://youtu.be/DEaSz8kVPH8 "How to Use MCP Servers (Full Workflow)")
+[![Build Your Own MCP Server. Walkthrough, Step-by-Step Guide!](https://i1.ytimg.com/vi/DEaSz8kVPH8/sddefault.jpg)](https://youtu.be/DEaSz8kVPH8 "How to Use MCP Servers (Full Workflow)")
 
 ## Features 🚀
 
