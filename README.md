@@ -4,7 +4,11 @@ MCP Server is a structured, standards-compliant API for serving metadata, servic
 
 This server follows the [MCP specification](https://www.modelcontext.org/spec) and is production-ready, built with clean TypeScript code and a modular design.
 
-## Features 🚀
+[![Build Your Own MCP Server. Walkthrough, Step-by-Step Guide!](https://i1.ytimg.com/vi/DEaSz8kVPH8/sddefault.jpg)](https://youtu.be/DEaSz8kVPH8 "How to Use MCP Servers (Full Workflow)")
+
+📺 [Click here to watch on YouTube](https://youtu.be/DEaSz8kVPH8)
+
+## Project Features 🚀
 
 * `.well-known/model-context` for structured model-level context resolution
 * `.well-known/v1.json` to define a public semantic schema using JSON-LD – this is your `@context` document, allowing linked data vocab reuse
@@ -20,16 +24,19 @@ This server follows the [MCP specification](https://www.modelcontext.org/spec) a
 2. `npm run dev` to start the server in development mode with auto-reload (`ts-node-dev`).
 3. Copy `.env.dist` to `.env` and configure the variables to fit your environment.
 
+
 ### Other Commands
 
 * `npm run start` – start the compiled server in normal mode (no hot reload)
 * `npm run prod` – full production build and run (builds and launches)
 * `npm run build` – compile TypeScript source code into `dist/` JavaScript
 
+
 ### Utility
 
 * `npm run prettier:check` – check formatting issues using Prettier
 * `npm run prettier:fix` – auto-format source files
+
 
 ## Environment Variables
 
