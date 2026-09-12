@@ -1,3 +1,7 @@
+HISTORICAL DRAFT — NOT A CURRENT PRODUCT CLAIM
+
+The REST prototype does not implement Model Context Protocol or establish indexing by AI platforms. The original draft below is preserved for provenance and must be fact-checked before publication.
+
 📊 Just launched a public MCP server for my freelance data science work using Fastify + TypeScript.
 
 Now AI agents and clients can auto-discover my services. Here's why it matters 🧵
