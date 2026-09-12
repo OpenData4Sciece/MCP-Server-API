@@ -16,14 +16,6 @@ const mcpMetadata = {
 export async function registerContextRoutes(server: FastifyInstance) {
   await server.register(cors, { origin: true });
 
-  // Logging middleware
-  server.addHook("onRequest", async (request) => {
-    console.log(`[${new Date().toISOString()}] ${request.method} ${request.url}`);
-  });
-  server.addHook("onError", async (request, reply, error) => {
-    console.error(`[${new Date().toISOString()}] ERROR: ${error.message}`);
-  });
-
   /**
    * MCP Discovery Endpoint
    * Returns metadata about the MCP server including name, description, version, tags, contact, and content endpoint.
@@ -119,21 +111,42 @@ export async function registerContextRoutes(server: FastifyInstance) {
     return { error: "Model not found" };
   });
 
-  /**
-   * Strava Activities Integration Endpoint
-   * Fetches Strava athlete activities using provided access token and optional pagination parameters.
-   */
-  server.post("/v1/strava/activities", async (request, reply) => {
-    const { accessToken, endpoint = "https://www.strava.com/api/v3/athlete/activities", page = 1, per_page = 30 } = request.body as any;
-    try {
-      const response = await axios.get(endpoint, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-        params: { page, per_page }
-      });
-      return response.data;
-    } catch (error: any) {
-      console.error(`[${new Date().toISOString()}] Strava API ERROR:`, error.message);
-      reply.code(500).send({ error: error.message });
+  // Token-bearing requests can reach only Strava's documented activities endpoint.
+  server.post<{ Body: { accessToken: string; page?: number; per_page?: number } }>(
+    '/v1/strava/activities',
+    {
+      onRequest: async (_request, reply) => {
+        reply.header('Cache-Control', 'no-store');
+      },
+      schema: {
+        body: {
+          type: 'object',
+          additionalProperties: false,
+          required: ['accessToken'],
+          properties: {
+            accessToken: { type: 'string', minLength: 1, maxLength: 4096, pattern: '^\\S+$' },
+            page: { type: 'integer', minimum: 1, maximum: 10000, default: 1 },
+            per_page: { type: 'integer', minimum: 1, maximum: 200, default: 30 },
+          },
+        },
+      },
+    },
+    async (request, reply) => {
+      const { accessToken, page = 1, per_page = 30 } = request.body;
+      try {
+        const response = await axios.get('https://www.strava.com/api/v3/athlete/activities', {
+          headers: { Authorization: `Bearer ${accessToken}` },
+          params: { page, per_page },
+          timeout: 10000,
+          maxRedirects: 0,
+          maxContentLength: 2 * 1024 * 1024,
+        });
+        return response.data;
+      } catch (error: unknown) {
+        const status = axios.isAxiosError(error) ? error.response?.status : undefined;
+        request.log.error({ status }, 'Strava request failed');
+        return reply.code(502).send({ error: 'Unable to retrieve Strava activities' });
+      }
     }
-  });
+  );
 }
