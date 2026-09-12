@@ -1,29 +1,16 @@
-import Fastify from "fastify";
-import dotenv from "dotenv";
-import { registerContextRoutes } from "./routes/contextRoutes";
-import fastifyStatic from "@fastify/static";
-import path from "path";
+import 'dotenv/config';
+import { createServer } from './app';
 
-// Load environment variables
-dotenv.config();
-
-const PORT = Number(process.env.APP_PORT) || 3000;
-const server = Fastify({ logger: true });
-const appVersion = process.env.APP_VERSION || "1.0.0";
-
-// Register context routes
-registerContextRoutes(server);
-
-server.register(fastifyStatic, {
-  root: path.join(__dirname, "../public"),
-  prefix: "/", // optional: serve from root
-});
-
-// Start server
-server.listen({ port: PORT }, (err, address) => {
-  if (err) {
-    server.log.error(err);
-    process.exit(1);
+async function start() {
+  const port = Number(process.env.APP_PORT || 3000);
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    throw new Error('APP_PORT must be an integer between 1 and 65535');
   }
-  console.log(`🚀 MCP Server (v${appVersion}) ready at ${address}`);
+  const server = await createServer();
+  await server.listen({ port, host: process.env.APP_HOST || '127.0.0.1' });
+}
+
+start().catch(() => {
+  console.error('Unable to start metadata API; check configuration and port availability.');
+  process.exitCode = 1;
 });

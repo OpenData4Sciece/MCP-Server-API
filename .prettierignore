@@ -1,0 +1,5 @@
+node_modules/
+dist/
+# Preserve the verbatim license and historical social draft.
+LICENSE.md
+threads.txt
