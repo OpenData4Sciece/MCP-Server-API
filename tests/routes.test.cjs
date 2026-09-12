@@ -14,6 +14,59 @@ async function app(t) {
   return server;
 }
 
+test('metadata reads configured values at registration time', async (t) => {
+  const before = {
+    name: process.env.MCP_NAME,
+    tags: process.env.MCP_TAGS,
+    version: process.env.APP_VERSION,
+  };
+  t.after(() => {
+    for (const [key, value] of Object.entries({
+      MCP_NAME: before.name,
+      MCP_TAGS: before.tags,
+      APP_VERSION: before.version,
+    })) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  });
+  Object.assign(process.env, {
+    MCP_NAME: 'Fixture service',
+    MCP_TAGS: ' ML, statistics, , ML ',
+    APP_VERSION: '9.8.7',
+  });
+  const server = await app(t);
+  const response = await server.inject('/.well-known/model-context');
+  assert.equal(response.statusCode, 200);
+  assert.equal(response.json().name, 'Fixture service');
+  assert.equal(response.json().version, '9.8.7');
+  assert.deepEqual(response.json().tags, ['ML', 'statistics']);
+});
+
+test('documented discovery resolves the same metadata and context', async (t) => {
+  const server = await app(t);
+  const metadata = await server.inject('/.well-known/model-context');
+  const discovery = await server.inject('/v1/discovery');
+  assert.equal(discovery.statusCode, 200);
+  assert.deepEqual(discovery.json(), metadata.json());
+  const context = (await server.inject(metadata.json()['@context'])).json()['@context'];
+  for (const field of ['name', 'description', 'version', 'tags', 'contact', 'content_endpoint'])
+    assert.ok(context[field], field);
+});
+
+test('models identify examples and return 404 for unknown IDs', async (t) => {
+  const server = await app(t);
+  const content = await server.inject('/v1/content');
+  assert.equal(content.json().length, 4);
+  for (const id of ['churn', 'eda']) {
+    const response = await server.inject(`/v1/model/${id}`);
+    assert.equal(response.statusCode, 200);
+    assert.equal(response.json().example, true);
+    assert.equal(response.json().usage, undefined);
+  }
+  assert.equal((await server.inject('/v1/model/missing')).statusCode, 404);
+});
+
 test('arbitrary destinations and malformed bodies never make outbound requests', async (t) => {
   const server = await app(t);
   let calls = 0;
